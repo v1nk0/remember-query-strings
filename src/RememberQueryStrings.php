@@ -29,7 +29,7 @@ class RememberQueryStrings
 
     protected function remembered($next, $request)
     {
-        $remembered = array_filter($request->session()->get('remember_query_strings.'.$request->route()->getName()) ?? []);
+        $remembered = array_filter($request->session()->get('remember_query_strings.'.$this->getRouteIdentifier($request)) ?? []);
 
         if ($remembered) {
             $request->session()->reflash();
