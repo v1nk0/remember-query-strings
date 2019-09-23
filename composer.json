@@ -1,5 +1,5 @@
 {
-    "name": "reinink/remember-query-strings",
+    "name": "v1nk0/remember-query-strings",
     "type": "library",
     "description": "Laravel middleware that automatically remembers and restores query strings.",
     "keywords": ["laravel", "middleware", "query-strings"],
@@ -14,7 +14,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Reinink\\": "src"
+            "V1nk0\\": "src"
         }
     }
 }
