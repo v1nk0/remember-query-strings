@@ -42,15 +42,27 @@ class RememberQueryStrings
 
     protected function remember($next, $request)
     {
-        $request->session()->put('remember_query_strings.'.$request->route()->getName(), array_filter($request->all()));
+        $request->session()->put('remember_query_strings.'.$this->getRouteIdentifier($request), array_filter($request->all()));
 
         return $next($request);
     }
 
     protected function forget($next, $request)
     {
-        $request->session()->remove('remember_query_strings.'.$request->route()->getName());
+        $request->session()->remove('remember_query_strings.'.$this->getRouteIdentifier($request));
 
         return redirect(url($request->path()));
+    }
+
+    private function getRouteIdentifier($request)
+    {
+        $identifier = $request->route()->getName();
+
+        foreach($request->route()->parameters as $k => $v )
+        {
+            $identifier .= '.'.$k.'['.$v.']';
+        }
+
+        return $identifier;
     }
 }
